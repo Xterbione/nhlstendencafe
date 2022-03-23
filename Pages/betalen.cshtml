@@ -1,0 +1,57 @@
+﻿@page
+@using nhl_stenden_cafe.Pages.Repositorys
+@model nhl_stenden_cafe.Pages.betalenModel
+@{
+}
+
+
+<div class="container-fluid" style="padding-top:20px;">
+    <h1>Rekening</h1>
+    <hr />
+  <table class="table table-striped">
+            <tr>
+                <th>Product</th>
+                <th>Prijs P/S</th>
+                <th>aantal betaald</th>
+                <th>Totaal aantal</th>
+                <th>nog te betalen</th>
+                <th>prijs</th>
+                <th>Totaal</th>
+            </tr>
+            @{
+                int i = 0;
+                int b = 0;
+            }
+            @foreach (CafeCount cafeCount in @Model.cafeCounts)
+            {
+
+                <tr>
+                    <td>@cafeCount.ProductName</td>
+                    <td>@cafeCount.Price</td>
+                    <td>@cafeCount.ProductCountPaid</td>
+                    <td>@cafeCount.ProductCount</td>
+                    <td>@cafeCount.ProductCountNotPaid</td>
+                    <td>@cafeCount.Price</td>
+                    <td> @cafeCount.ProductTotal</td>
+                </tr>
+                b = b + cafeCount.ProductCountNotPaid;
+                i++;
+            }
+
+
+        </table>
+    @if (@Model.pay)
+    {
+         <form method="get">
+              <a asp-route-ending="true" class="btn-primary btn">scherm verlaten en opnieuw beginnen</a>
+         </form>  
+    }
+    else
+    {
+        <form method="get">
+            <button type="submit" value="true" name="pay" class="btn btn-primary">Betalen</button>
+        </form>
+    }
+
+
+</div>

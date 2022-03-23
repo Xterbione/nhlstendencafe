@@ -1,0 +1,60 @@
+﻿@page
+@using nhl_stenden_cafe.Pages.Repositorys
+@model nhl_stenden_cafe.Pages.pbetalenModel
+@{
+}
+
+
+<div class="container-fluid" style="padding-top:20px;">
+    <h1>Rekening Per Persoon Betalen</h1>
+    <hr />
+    <form method="get">
+        <table class="table table-striped">
+            <tr>
+                <th>Product</th>
+                <th>aantal</th>
+                <th>Prijs P/S</th>
+                <th>aantal betaald</th>
+                <th>Totaal aantal</th>
+                <th>nog te betalen</th>
+                <th>prijs</th>
+                <th>Totaal</th>
+            </tr>
+            @{
+                int i = 0;
+                int b = 0;
+            }
+            @foreach (CafeCount cafeCount in @Model.cafeCounts)
+            {
+
+                <tr>
+                    <td>@cafeCount.ProductName</td>
+                    <td>
+                        <input type="hidden" value="@cafeCount.ProductId" name="[@i].prodid">
+                        @*hidden input for the product id*@
+                        <input type="number" min="0" max="@cafeCount.ProductCountNotPaid" name="[@i].amount" />
+                    </td>
+                    <td>@cafeCount.Price</td>
+                    <td>@cafeCount.ProductCountPaid</td>
+                    <td>@cafeCount.ProductCount</td>
+                    <td>@cafeCount.ProductCountNotPaid</td>
+                    <td>@cafeCount.Price</td>
+                    <td> @cafeCount.ProductTotal</td>
+                </tr>
+                b = b + cafeCount.ProductCountNotPaid;
+                i++;
+            }
+
+
+        </table>
+        <button type="submit" value="True" name="pay" class="btn btn-primary">Betalen</button>
+        @if (b <= 0)
+        {
+            <button name="ending" value="true" class="btn btn-primary">scherm verlaten en opnieuw beginnen</button>
+        }
+        
+    </form>
+
+
+
+</div>

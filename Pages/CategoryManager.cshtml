@@ -1,0 +1,52 @@
+﻿@page
+@model nhl_stenden_cafe.Pages.CategoryManagerModel
+@{
+}
+
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Naam</th>
+                <th scope="col">Save Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cat in Model.categories)
+            {
+
+                <tr>
+                    <form method="get">
+                    <td>
+                        <input name="catid" type="hidden" value="@cat.CategoryId" required />
+                        <div class="invalid-feedback">
+                            Dit veld is verplicht!
+                        </div>
+                        <input name="edit" type="text" value="@cat.Name" required> </input>
+                        <div class="invalid-feedback">
+                            Dit veld is verplicht!
+                        </div>
+                    </td>
+                    <td><button type="submit" class="btn btn-primary"> save</button></td>
+                    </form>
+                    <form method="get">
+                    <td><button type="submit" name="delete" value="@cat.CategoryId" class="btn btn-danger">Delete</button></td>
+                    </form>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div class="container card card-body">
+        <form>
+            <h1>Nieuwe Category Toevoegen</h1>
+            <div class="form-group">
+                <label for="catinsert">Naam van de nieuwe category</label>
+                <input type="text" class="form-control" id="catinsert" name="catinsert" placeholder="naam van de category">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@page
+@using nhl_stenden_cafe.Pages.Models
+@model nhl_stenden_cafe.Pages.overzichtModel
+@{
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Prijs P/S</th>
+            <th scope="col">Hoeveelheid</th>
+            <th scope="col">tafel nummer: @Model.Tablenumber</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KeyValuePair<Product, int> item in @Model.OrderItems)
+        {
+
+            <tr>
+                <td scope="row">@item.Key.Name</td>
+                <td scope="row">@item.Key.Price</td>
+                <td>
+                    <a asp-route-decproductid="@item.Key.ProductId"><span class="badge alert-primary">-</span></a>
+                    @item.Value
+                    <a asp-route-incproductid="@item.Key.ProductId"><span class="badge alert-primary">+</span></a>
+                </td>
+                <td>
+                    <a asp-route-delproductid="@item.Key.ProductId"><span class="badge alert-danger">delete</span></a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<div class="d-flex justify-content-end">
+    <a href="/order_process?direction=1" class="btn m-1 btn-primary">bestellen & appart betalen</a>
+    <a href="/order_process?direction=2" class="btn m-1 btn-primary">bestellen & geheel betalen</a>
+</div>
+
+

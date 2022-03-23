@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - nhl_stenden_cafe</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/nhl_stenden_cafe.styles.css" asp-append-version="true" />
+</head>
+@*a little styling, could be in a css. but its too short for that effort.*@
+<style>
+
+
+    a:link, a:visited, a:hover, a:active {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .card {
+        width: 30rem;
+    }
+
+    .btn a:link, .btn a:visited, .btn a:hover, .btn a:active {
+        color: white;
+        text-decoration: none;
+    }
+
+    .card {
+        width: 30rem;
+    }
+</style>
+
+
+
+<body>
+    @*navbar | controlled by javascript in the bottom of this document*@
+    <header>
+        <ul class="nav nav-tabs" style="background-color: white;">
+            <li class="navbar-brand">NHL Cafe</li>
+            <li class="nav-item">
+                <a class="nav-link" id="login" aria-current="page" href="login">login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="register" aria-current="page" href="register">register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="index" aria-current="page" href="/">Bestellen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="overzicht" href="overzicht">Overzicht</a>
+            </li>
+            <li class="nav-item betalen">
+                <a class="nav-link" id="betalen" href="betalen">Alles Betalen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pbetalen" href="pbetalen">Per persoon betalen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="CategoryManager" href="CategoryManager">Category Manager</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ProductManager" href="ProductManager">Product Manager</a>
+            </li>
+        </ul>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background-color: white;">
+        <div class="container">
+            &copy; 2022 - nhl_stenden_cafe - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+@* this part will be responsible for making the right page tab active*@
+<script>
+     //setting variables
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    //checking for index or something else
+    if(page == ""){
+           var d = document.getElementById("index");
+    }
+    else
+    {
+    var d = document.getElementById(page.toString());
+    }
+     d.className += " active";
+
+</script>
+</html>

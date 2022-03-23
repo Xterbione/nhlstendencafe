@@ -1,0 +1,27 @@
+﻿@page
+@model nhl_stenden_cafe.Pages.tablenumberModel
+@{
+}
+
+<div class="container row" style="padding-top:10px;">
+    <div class="col-md-4 col-sm-10">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <form method="Get">
+                <div class="mb-2">
+                    <label for="tablenumber" class="form-label">aan welke tafel zit u?</label>
+                    <select class="form-select" name="Tablenumber">
+                            <option value="1">Tafel 1</option>
+                            <option value="2">Tafel 2</option>
+                            <option value="3">Tafel 3</option>
+                            <option value="4">Tafel 4</option>
+                            <option value="5">Tafel 5</option>
+                        </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Nog geen account? klik dan <a href="register">hier</a></p>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
