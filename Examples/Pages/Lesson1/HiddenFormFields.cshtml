@@ -1,0 +1,21 @@
+@page
+@model Examples.Pages.Lesson1.HiddenFormFields
+
+@{
+    Layout = null;
+}
+
+Request Method: <h1>@Request.Method</h1>
+
+<hr/>
+
+<p>productId: @Model.ProductId</p>
+<p>action: @Model.Action</p>
+
+<hr/>
+
+<form method="post">
+    <input type="hidden" name="productId" value="434343">
+    <input type="hidden" name="action" value="addItemToShoppingCard">
+    <button type="submit">Add Product to Shopping Cart</button>
+</form>
